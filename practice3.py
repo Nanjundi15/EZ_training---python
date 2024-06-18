@@ -1,27 +1,62 @@
-'''2) Ant on Rail
-There is a ant on your balcony.It wants to leave the rail so sometimes it moves right and sometimes it moves left until it gets exhausted.
-Given an integer array A of size N which consists of integer 1 and -1 only representing ant's moves.
-Where 1 means ant moved unit distance towards the right side and -1 means it moved unit distance towards the left .
-Your task is to find and return the integer value representing how many times the ant reaches back to original starting position.
-Note:
-•
-Assume 1-based indexing
-•
-Assume that the railing extends infinitely on the either sides
-Input Format:
-input1 : An integer value N representing the number of moves made by the ant. input2 : An integer array 
-A consisting of the ant's moves towards either side Sample Input
-5
-1 -1 1 -1 1
-Sample Output
-2'''
-n=int(input())
-l=list(map (int,input("enter the moves in the rail").split()))
-pos=0
-r_p=0
-for i in l:
-    pos=pos+i
+'''
+Given an integer array your task is to find the k continious digits which gives you the maximum sum ,where k is entered by user
+
+sample output:
+[2,4,3,5,6,3,4,6,7,1,2,5]
+output:[4,6,7]
+'''
+'''list=[2,4,3,5,6,3,4,6,7,1,2,5]
+sum=max=0
+for i in range(0,len(list)-2):
+    sum=list[i]+list[i+1]+list[i+2]
+    if max<=sum:
+        
+       max=sum
+       pos=i
+       
+print(max,list[pos],list[pos+1],list[pos+2])'''
+
+#for k contribute:
+l=[2,4,3,5,6,3,4,6,7,1,2,5]
+window=max=0
+k=int(input("enter the no of continious digits="))
+
+for j in range(0,k):
+    window+=l[j]
+for i in range(0,len(l)-k):
+    if max<window:
+        max=window
+        pos=i
+    window=window+l[i+k]-l[i]
+print("result")
+print(max)
+
+for j in range(0,k):
+    print(l[pos+j])
     
-    if pos==0:
-        r_p=+1
-print(r_p)
+'''l = [2, 4, 3, 5, 6, 3, 4, 6, 7, 1, 2, 5]
+k = int(input("Enter the number of continuous digits: "))
+
+# Initialize variables
+max_sum = 0
+window_sum = 0
+pos = 0
+
+# Check if k is valid
+if k > len(l) or k <= 0:
+    print("Invalid window size")
+else:
+    # Calculate the sum of the first window
+    for j in range(k):
+        window_sum += l[j]
+
+    max_sum = window_sum
+
+    # Slide the window across the list
+    for i in range(1, len(l) - k + 1):
+        window_sum = window_sum - l[i - 1] + l[i + k - 1]
+        if window_sum > max_sum:
+            max_sum = window_sum
+            pos = i
+
+    print(f"The maximum sum is {max_sum} starting at position {pos}")'''
